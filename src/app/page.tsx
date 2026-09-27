@@ -157,7 +157,7 @@ export default function CustomerApp() {
                   if (storeId) selectStore(storeId);
                 }}
               >
-                <option value="" disabled>Escolha uma loja</option>
+                <option value="" disabled hidden>Escolha uma loja</option>
                 {stores.map((store) => (
                   <option key={store.id} value={store.id}>{store.shortName}</option>
                 ))}
