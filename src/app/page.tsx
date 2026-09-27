@@ -130,7 +130,7 @@ export default function CustomerApp() {
       </header>
 
       {view === "select" && (
-        <section className="mx-auto grid max-w-4xl gap-3 px-4 py-4 max-sm:min-h-0 max-sm:w-full max-sm:flex-1 max-sm:grid-rows-[minmax(0,1fr)_auto] max-sm:overflow-hidden sm:gap-4 sm:py-6">
+        <section className="mx-auto grid max-w-4xl gap-3 px-4 py-4 max-sm:min-h-0 max-sm:w-full max-sm:flex-1 max-sm:grid-rows-[minmax(0,1fr)_auto] max-sm:overflow-hidden max-sm:pb-20 max-sm:pt-3 sm:gap-4 sm:py-6">
           <div className="relative min-h-0 overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-red-700 via-red-600 to-orange-500 shadow-xl max-sm:h-full sm:aspect-[16/7] sm:min-h-64 sm:rounded-[2rem]">
             {selectionSlides.map((slide, index) => (
               <img
@@ -145,8 +145,8 @@ export default function CustomerApp() {
             ))}
           </div>
 
-          <div className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
-            <div className="flex items-center gap-2 rounded-2xl bg-zinc-50 px-4 py-3 text-zinc-900 ring-1 ring-black/10">
+          <div className="rounded-[1.5rem] bg-white p-3 shadow-sm ring-1 ring-black/5 sm:p-4">
+            <div className="flex items-center gap-2 rounded-2xl bg-zinc-50 px-4 py-3 text-zinc-900 ring-1 ring-black/10 max-sm:py-2.5">
               <StoreIcon size={20} className="shrink-0 text-red-600" />
               <select
                 defaultValue=""
