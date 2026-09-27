@@ -14,7 +14,7 @@ import {
   Store as StoreIcon,
   Truck,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
 import { categories, formatMoney, products, stores } from "@/lib/data";
 import {
@@ -36,6 +36,16 @@ const statusLabel = {
   concluido: "Concluido",
 };
 
+const selectionSlides = [
+  "/slides/imagem-06.jpg",
+  "/slides/imagem-07.jpg",
+  "/slides/imagem-01.jpg",
+  "/slides/imagem-02.jpg",
+  "/slides/imagem-03.jpg",
+  "/slides/imagem-04.jpg",
+  "/slides/imagem-05.jpg",
+];
+
 export default function CustomerApp() {
   const { state, setState, ready } = useDemoState();
   const [view, setView] = useState<View>("select");
@@ -44,6 +54,7 @@ export default function CustomerApp() {
   const [category, setCategory] = useState<string>("todos");
   const [offersOnly, setOffersOnly] = useState(false);
   const [pendingStore, setPendingStore] = useState<StoreId | null>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   const selectedStore = stores.find((store) => store.id === state.selectedStoreId) ?? stores[0];
   const cartStore = stores.find((store) => store.id === state.cartStoreId) ?? selectedStore;
@@ -60,6 +71,13 @@ export default function CustomerApp() {
   }, [category, offersOnly, query, selectedStore.id, state]);
 
   const totals = useMemo(() => calculateTotals(state.cart, cartStore.id, state), [cartStore.id, state]);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % selectionSlides.length);
+    }, 4500);
+    return () => window.clearInterval(interval);
+  }, []);
 
   function selectStore(storeId: StoreId) {
     if (state.cart.length && state.cartStoreId && state.cartStoreId !== storeId) {
@@ -112,12 +130,36 @@ export default function CustomerApp() {
       </header>
 
       {view === "select" && (
-        <section className="mx-auto max-w-3xl px-4 py-6">
-          <div className="rounded-[2rem] bg-gradient-to-br from-red-700 via-red-600 to-orange-500 p-6 text-white shadow-xl sm:p-8">
-            <p className="text-sm font-bold uppercase tracking-wider text-red-200">Selecao de loja</p>
-            <h1 className="mt-3 text-3xl font-black leading-tight sm:text-5xl">Escolha onde montar a compra.</h1>
-            <p className="mt-4 text-sm leading-6 text-white/90">Selecione uma das unidades abaixo para entrar direto na loja. Distancias e areas de atendimento sao ficticias para apresentacao.</p>
-            <div className="mt-6 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 text-zinc-900 shadow-lg shadow-orange-900/20">
+        <section className="mx-auto grid max-w-4xl gap-4 px-4 py-6">
+          <div className="relative aspect-[16/7] min-h-64 overflow-hidden rounded-[2rem] bg-gradient-to-br from-red-700 via-red-600 to-orange-500 shadow-xl">
+            {selectionSlides.map((slide, index) => (
+              <img
+                key={slide}
+                src={slide}
+                alt="Imagem promocional do Grupo Fenix"
+                className={clsx(
+                  "absolute inset-0 h-full w-full object-cover transition-opacity duration-700",
+                  index === activeSlide ? "opacity-100" : "opacity-0",
+                )}
+              />
+            ))}
+            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+              {selectionSlides.map((slide, index) => (
+                <button
+                  key={slide}
+                  aria-label={`Ver imagem ${index + 1}`}
+                  onClick={() => setActiveSlide(index)}
+                  className={clsx(
+                    "h-2 rounded-full transition-all",
+                    index === activeSlide ? "w-8 bg-white" : "w-2 bg-white/55",
+                  )}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
+            <div className="flex items-center gap-2 rounded-2xl bg-zinc-50 px-4 py-3 text-zinc-900 ring-1 ring-black/10">
               <StoreIcon size={20} className="shrink-0 text-red-600" />
               <select
                 defaultValue=""
