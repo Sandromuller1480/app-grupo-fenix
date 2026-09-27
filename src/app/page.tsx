@@ -124,7 +124,7 @@ export default function CustomerApp() {
 
       {view === "select" && (
         <section className="mx-auto grid max-w-6xl gap-6 px-4 py-6 lg:grid-cols-[1fr_1.2fr]">
-          <div className="rounded-[2rem] bg-zinc-950 p-6 text-white shadow-xl">
+          <div className="rounded-[2rem] bg-gradient-to-br from-red-700 via-red-600 to-orange-500 p-6 text-white shadow-xl">
             <p className="text-sm font-bold uppercase tracking-wider text-red-200">Selecao de loja</p>
             <h1 className="mt-3 text-3xl font-black leading-tight sm:text-5xl">Escolha onde montar a compra.</h1>
             <p className="mt-4 text-sm leading-6 text-zinc-200">Digite um CEP, use a localizacao demonstrativa ou selecione manualmente uma unidade. Distancias e areas sao ficticias para apresentacao.</p>
