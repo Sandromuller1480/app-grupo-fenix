@@ -1,0 +1,18 @@
+{
+  "name": "Grupo Fenix",
+  "short_name": "Fenix",
+  "description": "Plataforma demonstrativa do Grupo Fenix.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fff8f2",
+  "theme_color": "#e2252b",
+  "icons": [
+    {
+      "src": "/logos/fenix.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
