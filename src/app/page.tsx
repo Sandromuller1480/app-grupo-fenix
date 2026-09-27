@@ -317,7 +317,7 @@ function ProductGrid({ items, state, storeId, onOpen, onAdd }: { items: { produc
             <button onClick={() => onOpen(product.id)} className="flex flex-1 flex-col text-left">
               <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-zinc-50">
                 <img src={product.image} alt={product.alt} className="h-full w-full object-contain" />
-                {product.illustrative && <span className="absolute bottom-2 left-2 rounded-full bg-white/90 px-2 py-1 text-[10px] font-bold">Ilustrativa</span>}
+                {product.illustrative && <span className="absolute bottom-2 left-2 rounded-full bg-white/90 px-2 py-1 text-[10px] font-bold">Foto ilustrativa</span>}
               </div>
               <p className="mt-3 min-h-10 text-sm font-black">{product.title}</p>
               <p className="text-xs text-zinc-500">{product.brand} - {product.package}</p>
@@ -347,7 +347,7 @@ function ProductDetail({ product, storeId, state, onBack, onAdd }: { product: Pr
         <h2 className="mt-2 text-3xl font-black">{product.title}</h2>
         <p className="mt-3 text-zinc-600">{product.description}</p>
         <p className="mt-5 text-3xl font-black">{formatMoney(info.price)} <span className="text-sm font-bold text-zinc-500">/ {product.unit}</span></p>
-        {product.illustrative && <p className="mt-2 text-xs font-semibold text-amber-700">Imagem ilustrativa para apresentacao.</p>}
+        {product.illustrative && <p className="mt-2 text-xs font-semibold text-amber-700">Foto ilustrativa para apresentação.</p>}
         <div className="mt-6 flex items-center gap-3">
           <button onClick={() => setQuantity(Math.max(product.unit === "kg" ? 0.5 : 1, quantity - (product.unit === "kg" ? 0.5 : 1)))} className="rounded-full border p-2"><Minus size={18} /></button>
           <span className="min-w-16 text-center text-lg font-black">{quantity} {product.unit}</span>
