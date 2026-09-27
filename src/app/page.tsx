@@ -173,10 +173,14 @@ export default function CustomerApp() {
 
           {view === "home" && (
             <div className="grid gap-5">
-              <div className="flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-sm ring-1 ring-black/5">
-                <Search size={19} />
-                <input value={query} onChange={(event) => { setQuery(event.target.value); setView("catalog"); }} placeholder="Buscar arroz, carne, detergente..." className="w-full bg-transparent outline-none" />
-              </div>
+              <ProductSearchControls
+                query={query}
+                setQuery={setQuery}
+                category={category}
+                setCategory={setCategory}
+                offersOnly={offersOnly}
+                setOffersOnly={setOffersOnly}
+              />
               <div className="grid gap-4 md:grid-cols-2">
                 {state.banners.filter((banner) => banner.storeId === selectedStore.id && banner.active).map((banner) => (
                   <div key={banner.id} className="rounded-[1.5rem] p-5 text-white shadow-lg" style={{ background: `linear-gradient(135deg, ${selectedStore.palette.primary}, ${selectedStore.palette.secondary === "#ffffff" ? "#2b2b2b" : selectedStore.palette.secondary})` }}>
@@ -186,26 +190,20 @@ export default function CustomerApp() {
                   </div>
                 ))}
               </div>
-              <CategoryRail category={category} setCategory={(id) => { setCategory(id); setView("catalog"); }} />
               <ProductGrid items={catalog.filter(({ product }) => product.featured).slice(0, 8)} state={state} storeId={selectedStore.id} onOpen={(id) => { setSelectedProductId(id); setView("product"); }} onAdd={addProduct} />
             </div>
           )}
 
           {view === "catalog" && (
             <div className="grid gap-4">
-              <div className="grid gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 md:grid-cols-[1fr_auto_auto]">
-                <div className="flex items-center gap-2 rounded-xl bg-zinc-100 px-3 py-2">
-                  <Search size={18} />
-                  <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Buscar produto" className="w-full bg-transparent outline-none" />
-                </div>
-                <select value={category} onChange={(event) => setCategory(event.target.value)} className="rounded-xl border border-zinc-200 px-3 py-2">
-                  <option value="todos">Todas as categorias</option>
-                  {categories.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
-                </select>
-                <label className="flex items-center gap-2 rounded-xl bg-zinc-100 px-3 py-2 font-semibold">
-                  <input type="checkbox" checked={offersOnly} onChange={(event) => setOffersOnly(event.target.checked)} /> Ofertas
-                </label>
-              </div>
+              <ProductSearchControls
+                query={query}
+                setQuery={setQuery}
+                category={category}
+                setCategory={setCategory}
+                offersOnly={offersOnly}
+                setOffersOnly={setOffersOnly}
+              />
               {catalog.length ? <ProductGrid items={catalog} state={state} storeId={selectedStore.id} onOpen={(id) => { setSelectedProductId(id); setView("product"); }} onAdd={addProduct} /> : <EmptyState title="Nenhum produto encontrado" text="Tente outra busca ou categoria." />}
             </div>
           )}
@@ -277,11 +275,34 @@ function IconButton({ label, active, onClick, icon }: { label: string; active: b
   return <button title={label} onClick={onClick} className={clsx("rounded-full p-2", active ? "bg-red-50 text-red-700" : "text-zinc-700 hover:bg-zinc-100")}>{icon}</button>;
 }
 
-function CategoryRail({ category, setCategory }: { category: string; setCategory: (id: string) => void }) {
+function ProductSearchControls({
+  query,
+  setQuery,
+  category,
+  setCategory,
+  offersOnly,
+  setOffersOnly,
+}: {
+  query: string;
+  setQuery: (value: string) => void;
+  category: string;
+  setCategory: (value: string) => void;
+  offersOnly: boolean;
+  setOffersOnly: (value: boolean) => void;
+}) {
   return (
-    <div className="flex gap-2 overflow-auto pb-1">
-      <button onClick={() => setCategory("todos")} className={clsx("shrink-0 rounded-full px-4 py-2 text-sm font-bold", category === "todos" ? "btn-gradient" : "bg-white")}>Todos</button>
-      {categories.map((item) => <button key={item.id} onClick={() => setCategory(item.id)} className={clsx("shrink-0 rounded-full px-4 py-2 text-sm font-bold", category === item.id ? "btn-gradient" : "bg-white")}>{item.label}</button>)}
+    <div className="grid gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 md:grid-cols-[1fr_240px_auto]">
+      <div className="flex items-center gap-2 rounded-xl bg-zinc-100 px-3 py-3">
+        <Search size={18} />
+        <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Buscar produto" className="w-full bg-transparent outline-none" />
+      </div>
+      <select value={category} onChange={(event) => setCategory(event.target.value)} className="rounded-xl border border-zinc-200 bg-white px-3 py-3 font-semibold">
+        <option value="todos">Todas as categorias</option>
+        {categories.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
+      </select>
+      <label className="flex items-center gap-2 rounded-xl bg-zinc-100 px-3 py-3 font-semibold">
+        <input type="checkbox" checked={offersOnly} onChange={(event) => setOffersOnly(event.target.checked)} /> Ofertas
+      </label>
     </div>
   );
 }
