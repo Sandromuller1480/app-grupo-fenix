@@ -6,7 +6,6 @@ import {
   Clock3,
   CreditCard,
   Home,
-  LocateFixed,
   Minus,
   PackageCheck,
   Plus,
@@ -45,7 +44,6 @@ export default function CustomerApp() {
   const [category, setCategory] = useState<string>("todos");
   const [offersOnly, setOffersOnly] = useState(false);
   const [pendingStore, setPendingStore] = useState<StoreId | null>(null);
-  const [locationLoading, setLocationLoading] = useState(false);
 
   const selectedStore = stores.find((store) => store.id === state.selectedStoreId) ?? stores[0];
   const cartStore = stores.find((store) => store.id === state.cartStoreId) ?? selectedStore;
@@ -84,14 +82,6 @@ export default function CustomerApp() {
     const info = getStoreProduct(productId, selectedStore.id, state);
     if (!info.available) return;
     setState((current) => addCartItem(current, selectedStore.id, productId, quantity));
-  }
-
-  function simulateLocation() {
-    setLocationLoading(true);
-    window.setTimeout(() => {
-      setLocationLoading(false);
-      selectStore("fenix-jaciara");
-    }, 700);
   }
 
   if (!ready) {
@@ -144,9 +134,6 @@ export default function CustomerApp() {
                 ))}
               </select>
             </div>
-            <button onClick={simulateLocation} className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-white/20 px-4 py-3 font-bold">
-              <LocateFixed size={18} /> {locationLoading ? "Localizando..." : "Usar localizacao demonstrativa"}
-            </button>
           </div>
         </section>
       )}
