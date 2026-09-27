@@ -190,7 +190,7 @@ export default function CustomerApp() {
                   </div>
                 ))}
               </div>
-              <ProductGrid items={catalog.filter(({ product }) => product.featured).slice(0, 8)} state={state} storeId={selectedStore.id} onOpen={(id) => { setSelectedProductId(id); setView("product"); }} onAdd={addProduct} />
+              {catalog.length ? <ProductGrid items={catalog} state={state} storeId={selectedStore.id} onOpen={(id) => { setSelectedProductId(id); setView("product"); }} onAdd={addProduct} /> : <EmptyState title="Nenhum produto encontrado" text="Tente outra busca ou categoria." />}
             </div>
           )}
 
@@ -317,6 +317,7 @@ function ProductGrid({ items, state, storeId, onOpen, onAdd }: { items: { produc
             <button onClick={() => onOpen(product.id)} className="flex flex-1 flex-col text-left">
               <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-zinc-50">
                 <img src={product.image} alt={product.alt} className="h-full w-full object-contain" />
+                {info.offer && <span className="absolute right-2 top-2 rounded-full bg-gradient-to-r from-red-600 to-orange-500 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white shadow-[0_4px_0_rgba(96,22,8,0.75),0_10px_18px_rgba(239,68,68,0.25)] ring-1 ring-white/70">Oferta</span>}
                 {product.illustrative && <span className="absolute bottom-2 left-2 rounded-full bg-white/90 px-2 py-1 text-[10px] font-bold">Foto ilustrativa</span>}
               </div>
               <p className="mt-3 min-h-10 text-sm font-black">{product.title}</p>
