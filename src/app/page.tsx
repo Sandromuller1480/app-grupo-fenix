@@ -313,21 +313,21 @@ function ProductGrid({ items, state, storeId, onOpen, onAdd }: { items: { produc
       {items.map(({ product }) => {
         const info = getStoreProduct(product.id, storeId, state);
         return (
-          <article key={product.id} className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-black/5">
-            <button onClick={() => onOpen(product.id)} className="block w-full text-left">
+          <article key={product.id} className="flex h-full flex-col rounded-2xl bg-white p-3 shadow-sm ring-1 ring-black/5">
+            <button onClick={() => onOpen(product.id)} className="flex flex-1 flex-col text-left">
               <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-zinc-50">
                 <img src={product.image} alt={product.alt} className="h-full w-full object-contain" />
                 {product.illustrative && <span className="absolute bottom-2 left-2 rounded-full bg-white/90 px-2 py-1 text-[10px] font-bold">Ilustrativa</span>}
               </div>
               <p className="mt-3 min-h-10 text-sm font-black">{product.title}</p>
               <p className="text-xs text-zinc-500">{product.brand} - {product.package}</p>
-              <div className="mt-2">
+              <div className="mt-2 pb-3">
                 {info.oldPrice && <span className="mr-2 text-xs text-zinc-400 line-through">{formatMoney(info.oldPrice)}</span>}
                 <span className="text-lg font-black text-zinc-950">{formatMoney(info.price)}</span>
                 <span className="text-xs text-zinc-500"> / {product.unit}</span>
               </div>
             </button>
-            <button disabled={!info.available} onClick={() => onAdd(product.id)} className="btn-gradient mt-3 w-full rounded-xl px-3 py-2 text-sm font-bold">{info.available ? "Adicionar" : "Indisponivel"}</button>
+            <button disabled={!info.available} onClick={() => onAdd(product.id)} className="btn-gradient mt-auto w-full rounded-xl px-3 py-2 text-sm font-bold">{info.available ? "Adicionar" : "Indisponivel"}</button>
           </article>
         );
       })}
