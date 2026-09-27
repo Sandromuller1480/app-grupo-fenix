@@ -107,8 +107,8 @@ export default function CustomerApp() {
   }
 
   return (
-    <main className={clsx("app-shell", view === "select" && "max-sm:h-dvh max-sm:overflow-hidden")}>
-      <header className="sticky top-0 z-30 border-b border-black/5 bg-white/90 backdrop-blur">
+    <main className={clsx("app-shell", view === "select" && "max-sm:fixed max-sm:inset-0 max-sm:flex max-sm:h-[100svh] max-sm:flex-col max-sm:overflow-hidden")}>
+      <header className="sticky top-0 z-30 shrink-0 border-b border-black/5 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
           <button className="flex items-center gap-3 text-left" onClick={() => setView("select")}>
             <img src="/logos/fenix.jpeg" alt="Logotipo Fenix Supermercado" className="h-11 w-11 rounded-xl object-contain ring-1 ring-black/10" />
@@ -130,7 +130,7 @@ export default function CustomerApp() {
       </header>
 
       {view === "select" && (
-        <section className="mx-auto grid max-w-4xl gap-3 px-4 py-4 max-sm:h-[calc(100dvh-73px)] max-sm:grid-rows-[minmax(0,1fr)_auto] max-sm:overflow-hidden sm:gap-4 sm:py-6">
+        <section className="mx-auto grid max-w-4xl gap-3 px-4 py-4 max-sm:min-h-0 max-sm:w-full max-sm:flex-1 max-sm:grid-rows-[minmax(0,1fr)_auto] max-sm:overflow-hidden sm:gap-4 sm:py-6">
           <div className="relative min-h-0 overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-red-700 via-red-600 to-orange-500 shadow-xl max-sm:h-full sm:aspect-[16/7] sm:min-h-64 sm:rounded-[2rem]">
             {selectionSlides.map((slide, index) => (
               <img
