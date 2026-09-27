@@ -120,7 +120,7 @@ export default function CustomerApp() {
           <nav className="flex items-center gap-2">
             <IconButton label="Inicio" active={view === "home"} onClick={() => setView(state.selectedStoreId ? "home" : "select")} icon={<Home size={18} />} />
             <IconButton label="Pedidos" active={view === "orders"} onClick={() => setView("orders")} icon={<PackageCheck size={18} />} />
-            <button onClick={() => setView("cart")} className="relative rounded-full bg-zinc-900 px-4 py-2 text-sm font-bold text-white">
+            <button onClick={() => setView("cart")} className="btn-gradient relative rounded-full px-4 py-2 text-sm font-bold">
               <span className="hidden sm:inline">Carrinho</span>
               <ShoppingCart className="inline sm:ml-2" size={18} />
               {state.cart.length > 0 && <span className="absolute -right-2 -top-2 rounded-full bg-red-600 px-2 py-0.5 text-xs">{state.cart.length}</span>}
@@ -246,7 +246,7 @@ export default function CustomerApp() {
             </div>
             <div className="mt-5 flex justify-end gap-2">
               <button onClick={() => setPendingStore(null)} className="rounded-xl border px-4 py-2 font-bold">Cancelar</button>
-              <button onClick={applyStoreChange} className="rounded-xl bg-zinc-900 px-4 py-2 font-bold text-white">Aplicar troca</button>
+              <button onClick={applyStoreChange} className="btn-gradient rounded-xl px-4 py-2 font-bold">Aplicar troca</button>
             </div>
           </div>
         </div>
@@ -267,7 +267,7 @@ function StoreHeader({ store, onChange }: { store: (typeof stores)[number]; onCh
             <p className="text-sm text-zinc-600">{store.city} - compra demonstrativa</p>
           </div>
         </div>
-        <button onClick={onChange} className="flex items-center justify-center gap-2 rounded-xl border border-zinc-200 px-4 py-2 font-bold"><ArrowLeftRight size={18} /> Trocar loja</button>
+        <button onClick={onChange} className="btn-gradient flex items-center justify-center gap-2 rounded-xl px-4 py-2 font-bold"><ArrowLeftRight size={18} /> Trocar loja</button>
       </div>
     </div>
   );
@@ -280,8 +280,8 @@ function IconButton({ label, active, onClick, icon }: { label: string; active: b
 function CategoryRail({ category, setCategory }: { category: string; setCategory: (id: string) => void }) {
   return (
     <div className="flex gap-2 overflow-auto pb-1">
-      <button onClick={() => setCategory("todos")} className={clsx("shrink-0 rounded-full px-4 py-2 text-sm font-bold", category === "todos" ? "bg-zinc-900 text-white" : "bg-white")}>Todos</button>
-      {categories.map((item) => <button key={item.id} onClick={() => setCategory(item.id)} className={clsx("shrink-0 rounded-full px-4 py-2 text-sm font-bold", category === item.id ? "bg-zinc-900 text-white" : "bg-white")}>{item.label}</button>)}
+      <button onClick={() => setCategory("todos")} className={clsx("shrink-0 rounded-full px-4 py-2 text-sm font-bold", category === "todos" ? "btn-gradient" : "bg-white")}>Todos</button>
+      {categories.map((item) => <button key={item.id} onClick={() => setCategory(item.id)} className={clsx("shrink-0 rounded-full px-4 py-2 text-sm font-bold", category === item.id ? "btn-gradient" : "bg-white")}>{item.label}</button>)}
     </div>
   );
 }
@@ -306,7 +306,7 @@ function ProductGrid({ items, state, storeId, onOpen, onAdd }: { items: { produc
                 <span className="text-xs text-zinc-500"> / {product.unit}</span>
               </div>
             </button>
-            <button disabled={!info.available} onClick={() => onAdd(product.id)} className="mt-3 w-full rounded-xl bg-zinc-900 px-3 py-2 text-sm font-bold text-white disabled:bg-zinc-300">{info.available ? "Adicionar" : "Indisponivel"}</button>
+            <button disabled={!info.available} onClick={() => onAdd(product.id)} className="btn-gradient mt-3 w-full rounded-xl px-3 py-2 text-sm font-bold">{info.available ? "Adicionar" : "Indisponivel"}</button>
           </article>
         );
       })}
@@ -332,7 +332,7 @@ function ProductDetail({ product, storeId, state, onBack, onAdd }: { product: Pr
           <span className="min-w-16 text-center text-lg font-black">{quantity} {product.unit}</span>
           <button onClick={() => setQuantity(quantity + (product.unit === "kg" ? 0.5 : 1))} className="rounded-full border p-2"><Plus size={18} /></button>
         </div>
-        <button disabled={!info.available} onClick={() => onAdd(product.id, quantity)} className="mt-6 rounded-2xl bg-zinc-900 px-5 py-4 font-black text-white disabled:bg-zinc-300">Adicionar ao carrinho</button>
+        <button disabled={!info.available} onClick={() => onAdd(product.id, quantity)} className="btn-gradient mt-6 rounded-2xl px-5 py-4 font-black">Adicionar ao carrinho</button>
       </div>
     </div>
   );
@@ -471,7 +471,7 @@ function Summary({ totals, action, onAction, disabled }: { totals: ReturnType<ty
       <Line label="Descontos demonstrativos" value={`-${formatMoney(totals.discount)}`} />
       <Line label="Taxa de entrega demonstrativa" value={formatMoney(totals.deliveryFee)} />
       <div className="mt-3 border-t pt-3"><Line label="Total estimado" value={formatMoney(totals.total)} strong /></div>
-      <button disabled={disabled} onClick={onAction} className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-zinc-900 px-4 py-3 font-black text-white disabled:bg-zinc-300"><CreditCard size={18} /> {action}</button>
+      <button disabled={disabled} onClick={onAction} className="btn-gradient mt-4 flex w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 font-black"><CreditCard size={18} /> {action}</button>
     </aside>
   );
 }
@@ -494,7 +494,7 @@ function EmptyState({ title, text, action, onAction }: { title: string; text: st
       <StoreIcon size={42} className="text-zinc-400" />
       <h2 className="mt-4 text-2xl font-black">{title}</h2>
       <p className="mt-2 max-w-md text-zinc-600">{text}</p>
-      {action && <button onClick={onAction} className="mt-5 rounded-xl bg-zinc-900 px-4 py-2 font-bold text-white">{action}</button>}
+      {action && <button onClick={onAction} className="btn-gradient mt-5 rounded-xl px-4 py-2 font-bold">{action}</button>}
     </div>
   );
 }

@@ -71,7 +71,7 @@ export default function CrmPage() {
               {profiles.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <button key={item.id} onClick={() => setProfile(item.id)} className="rounded-2xl border border-zinc-200 p-4 text-left transition hover:-translate-y-0.5 hover:shadow-lg">
+                  <button key={item.id} onClick={() => setProfile(item.id)} className="btn-gradient rounded-2xl p-4 text-left transition">
                     <Icon className="text-red-700" />
                     <p className="mt-4 font-black">{item.label}</p>
                   </button>
@@ -179,7 +179,7 @@ export default function CrmPage() {
                           <div key={item.productId} className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-zinc-50 p-3 text-sm">
                             <span className="font-bold">{item.title} x {item.quantity}</span>
                             <span>{formatMoney(item.unitPrice)}</span>
-                            <button onClick={() => setState((current) => ({ ...current, orders: current.orders.map((saved) => saved.id === order.id ? { ...saved, items: saved.items.map((savedItem) => savedItem.productId === item.productId ? { ...savedItem, unavailable: true, substitution: "Produto similar sugerido pela loja" } : savedItem) } : saved) }))} className="rounded-lg border px-3 py-1 font-bold">Marcar indisponivel</button>
+                            <button onClick={() => setState((current) => ({ ...current, orders: current.orders.map((saved) => saved.id === order.id ? { ...saved, items: saved.items.map((savedItem) => savedItem.productId === item.productId ? { ...savedItem, unavailable: true, substitution: "Produto similar sugerido pela loja" } : savedItem) } : saved) }))} className="btn-gradient rounded-lg px-3 py-1 font-bold">Marcar indisponivel</button>
                             {item.unavailable && <span className="w-full rounded-lg bg-amber-50 px-3 py-2 font-bold text-amber-800">Substituicao proposta: {item.substitution}</span>}
                             {info.outdated && <span className="w-full rounded-lg bg-red-50 px-3 py-2 font-bold text-red-700">Preco desatualizado</span>}
                           </div>
@@ -247,9 +247,9 @@ export default function CrmPage() {
                   <button onClick={() => {
                     const current = getStoreProduct(selectedProductId, integrationStore, state);
                     setState((saved) => simulatePriceUpdate(saved, integrationStore, selectedProductId, Number((current.price + 1.37).toFixed(2))));
-                  }} className="rounded-xl bg-zinc-900 px-4 py-3 font-black text-white">Simular atualizacao de preco</button>
+                  }} className="btn-gradient rounded-xl px-4 py-3 font-black">Simular atualizacao de preco</button>
                 </div>
-                <button onClick={() => setState((saved) => markSyncFailure(saved, integrationStore, selectedProductId))} className="mt-3 rounded-xl border border-red-200 px-4 py-3 font-black text-red-700">Simular falha de sincronizacao</button>
+                <button onClick={() => setState((saved) => markSyncFailure(saved, integrationStore, selectedProductId))} className="btn-gradient mt-3 rounded-xl px-4 py-3 font-black">Simular falha de sincronizacao</button>
               </div>
               <div className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
                 <h3 className="font-black">Historico demonstrativo</h3>
@@ -275,7 +275,7 @@ export default function CrmPage() {
 }
 
 function NavButton({ tab, current, setTab, icon, label }: { tab: Tab; current: Tab; setTab: (tab: Tab) => void; icon: React.ReactNode; label: string }) {
-  return <button onClick={() => setTab(tab)} className={clsx("flex items-center gap-3 rounded-xl px-3 py-3 text-left font-bold", current === tab ? "bg-white text-zinc-950" : "text-zinc-300 hover:bg-white/10")}>{icon}{label}</button>;
+  return <button onClick={() => setTab(tab)} className={clsx("flex items-center gap-3 rounded-xl px-3 py-3 text-left font-bold", current === tab ? "btn-gradient" : "text-zinc-300 hover:bg-white/10")}>{icon}{label}</button>;
 }
 
 function Kpi({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
