@@ -130,8 +130,8 @@ export default function CustomerApp() {
       </header>
 
       {view === "select" && (
-        <section className="mx-auto grid max-w-4xl gap-4 px-4 py-6">
-          <div className="relative aspect-[16/7] min-h-64 overflow-hidden rounded-[2rem] bg-gradient-to-br from-red-700 via-red-600 to-orange-500 shadow-xl">
+        <section className="mx-auto grid max-w-4xl gap-3 px-4 py-4 sm:gap-4 sm:py-6">
+          <div className="relative aspect-[4/5] min-h-[360px] overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-red-700 via-red-600 to-orange-500 shadow-xl sm:aspect-[16/7] sm:min-h-64 sm:rounded-[2rem]">
             {selectionSlides.map((slide, index) => (
               <img
                 key={slide}
