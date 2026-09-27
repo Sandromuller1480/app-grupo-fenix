@@ -133,7 +133,7 @@ export default function CustomerApp() {
                 <Search size={18} />
                 <input placeholder="CEP ou endereco" className="w-full bg-transparent outline-none" />
               </div>
-              <button className="rounded-2xl bg-red-600 px-5 py-3 font-bold text-white" onClick={() => setView("select")}>Buscar</button>
+              <button className="rounded-2xl bg-amber-300 px-5 py-3 font-bold text-zinc-950 shadow-lg shadow-orange-900/20 transition hover:bg-amber-200" onClick={() => setView("select")}>Buscar</button>
             </div>
             <button onClick={simulateLocation} className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-white/20 px-4 py-3 font-bold">
               <LocateFixed size={18} /> {locationLoading ? "Localizando..." : "Usar localizacao demonstrativa"}
