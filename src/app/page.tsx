@@ -107,7 +107,7 @@ export default function CustomerApp() {
   }
 
   return (
-    <main className="app-shell">
+    <main className={clsx("app-shell", view === "select" && "max-sm:h-dvh max-sm:overflow-hidden")}>
       <header className="sticky top-0 z-30 border-b border-black/5 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
           <button className="flex items-center gap-3 text-left" onClick={() => setView("select")}>
@@ -130,8 +130,8 @@ export default function CustomerApp() {
       </header>
 
       {view === "select" && (
-        <section className="mx-auto grid max-w-4xl gap-3 px-4 py-4 sm:gap-4 sm:py-6">
-          <div className="relative aspect-[4/5] min-h-[360px] overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-red-700 via-red-600 to-orange-500 shadow-xl sm:aspect-[16/7] sm:min-h-64 sm:rounded-[2rem]">
+        <section className="mx-auto grid max-w-4xl gap-3 px-4 py-4 max-sm:h-[calc(100dvh-73px)] max-sm:grid-rows-[minmax(0,1fr)_auto] max-sm:overflow-hidden sm:gap-4 sm:py-6">
+          <div className="relative min-h-0 overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-red-700 via-red-600 to-orange-500 shadow-xl max-sm:h-full sm:aspect-[16/7] sm:min-h-64 sm:rounded-[2rem]">
             {selectionSlides.map((slide, index) => (
               <img
                 key={slide}
@@ -143,19 +143,6 @@ export default function CustomerApp() {
                 )}
               />
             ))}
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-              {selectionSlides.map((slide, index) => (
-                <button
-                  key={slide}
-                  aria-label={`Ver imagem ${index + 1}`}
-                  onClick={() => setActiveSlide(index)}
-                  className={clsx(
-                    "h-2 rounded-full transition-all",
-                    index === activeSlide ? "w-8 bg-white" : "w-2 bg-white/55",
-                  )}
-                />
-              ))}
-            </div>
           </div>
 
           <div className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
