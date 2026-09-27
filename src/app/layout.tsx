@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Grupo Fenix | Plataforma Demonstrativa",
-  description: "Prototipo navegavel para compras e CRM interno do Grupo Fenix.",
+  title: "Grupo Fênix | Plataforma Demonstrativa",
+  description: "Protótipo navegável para compras e CRM interno do Grupo Fênix.",
   manifest: "/manifest.webmanifest",
   icons: {
     icon: [{ url: "/logos/fenix.jpeg", type: "image/jpeg" }],
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     apple: [{ url: "/logos/fenix.jpeg", type: "image/jpeg" }],
   },
   appleWebApp: {
-    title: "Grupo Fenix",
+    title: "Grupo Fênix",
     capable: true,
     statusBarStyle: "default",
   },

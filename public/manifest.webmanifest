@@ -1,7 +1,7 @@
 {
-  "name": "Grupo Fenix",
-  "short_name": "Fenix",
-  "description": "Plataforma demonstrativa do Grupo Fenix.",
+  "name": "Grupo Fênix",
+  "short_name": "Fênix",
+  "description": "Plataforma demonstrativa do Grupo Fênix.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

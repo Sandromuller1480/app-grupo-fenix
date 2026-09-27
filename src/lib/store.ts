@@ -17,7 +17,7 @@ export const defaultState: DemoState = {
       id: "evt-inicial",
       storeId: "fenix-jaciara",
       createdAt: new Date().toISOString(),
-      description: "Cafe torrado e moido marcado como preco desatualizado para demonstracao.",
+      description: "Café torrado e moído marcado como preço desatualizado para demonstração.",
       type: "warning",
     },
   ],
@@ -41,7 +41,7 @@ export function saveState(state: DemoState) {
 
 export function getStoreProduct(productId: string, storeId: StoreId, state: DemoState): StoreProduct {
   const base = storeProducts.find((item) => item.productId === productId && item.storeId === storeId);
-  if (!base) throw new Error(`Produto ${productId} nao cadastrado na loja ${storeId}.`);
+  if (!base) throw new Error(`Produto ${productId} não cadastrado na loja ${storeId}.`);
   return { ...base, ...(state.overrides[`${storeId}:${productId}`] ?? {}) };
 }
 
@@ -98,7 +98,7 @@ export function simulatePriceUpdate(state: DemoState, storeId: StoreId, productI
     id: `evt-${Date.now()}`,
     storeId,
     createdAt: new Date().toISOString(),
-    description: `Preco demonstrativo atualizado para ${price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}.`,
+    description: `Preço demonstrativo atualizado para ${price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}.`,
     type: "success",
   };
   return {
@@ -115,7 +115,7 @@ export function markSyncFailure(state: DemoState, storeId: StoreId, productId: s
     id: `evt-${Date.now()}`,
     storeId,
     createdAt: new Date().toISOString(),
-    description: "Falha demonstrativa de sincronizacao: item ficou pendente de conferencia.",
+    description: "Falha demonstrativa de sincronização: item ficou pendente de conferência.",
     type: "error",
   };
   return {

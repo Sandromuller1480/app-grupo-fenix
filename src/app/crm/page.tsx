@@ -25,16 +25,16 @@ type Tab = "painel" | "pedidos" | "catalogo" | "campanhas" | "integracao";
 const profiles = [
   { id: "admin", label: "Administrador do grupo", icon: ShieldCheck },
   { id: "manager", label: "Gerente de loja", icon: UserCog },
-  { id: "catalog", label: "Operador de catalogo", icon: Boxes },
+  { id: "catalog", label: "Operador de catálogo", icon: Boxes },
   { id: "picker", label: "Separador", icon: ShoppingBag },
 ];
 
 const statuses: { id: OrderStatus; label: string }[] = [
   { id: "recebido", label: "Recebido" },
-  { id: "separacao", label: "Em separacao" },
+  { id: "separacao", label: "Em separação" },
   { id: "pronto", label: "Pronto" },
   { id: "entrega", label: "Saiu para entrega" },
-  { id: "concluido", label: "Concluido" },
+  { id: "concluido", label: "Concluído" },
 ];
 
 export default function CrmPage() {
@@ -65,8 +65,8 @@ export default function CrmPage() {
         <section className="mx-auto grid min-h-[calc(100vh-2rem)] max-w-5xl place-items-center">
           <div className="w-full rounded-[1.5rem] bg-white p-6 shadow-sm ring-1 ring-black/5">
             <p className="text-sm font-black uppercase tracking-wider text-red-700">CRM interno demonstrativo</p>
-            <h1 className="mt-3 text-3xl font-black">Escolha um perfil para apresentar a operacao.</h1>
-            <p className="mt-3 max-w-2xl text-zinc-600">Este acesso e apenas visual para prototipo. Ele nao representa seguranca de producao, nao autentica funcionarios e nao acessa dados reais.</p>
+            <h1 className="mt-3 text-3xl font-black">Escolha um perfil para apresentar a operação.</h1>
+            <p className="mt-3 max-w-2xl text-zinc-600">Este acesso é apenas visual para protótipo. Ele não representa segurança de produção, não autentica funcionários e não acessa dados reais.</p>
             <div className="mt-6 grid gap-3 md:grid-cols-4">
               {profiles.map((item) => {
                 const Icon = item.icon;
@@ -89,19 +89,19 @@ export default function CrmPage() {
       <div className="mx-auto flex max-w-7xl flex-col gap-4 p-4 lg:flex-row">
         <aside className="h-fit rounded-[1.5rem] bg-zinc-950 p-4 text-white lg:sticky lg:top-4 lg:w-72">
           <div className="flex items-center gap-3">
-            <img src="/logos/fenix.jpeg" alt="Logotipo Fenix Supermercado" className="h-12 w-12 rounded-xl bg-white object-contain" />
+            <img src="/logos/fenix.jpeg" alt="Logotipo Fênix Supermercado" className="h-12 w-12 rounded-xl bg-white object-contain" />
             <div>
-              <p className="text-sm font-black">Grupo Fenix</p>
+              <p className="text-sm font-black">Grupo Fênix</p>
               <p className="text-xs text-zinc-300">CRM demonstrativo</p>
             </div>
           </div>
-          <p className="mt-4 rounded-xl bg-white/10 p-3 text-xs leading-5 text-zinc-200">Perfil ativo: {profiles.find((item) => item.id === profile)?.label}. Sem autenticacao real nesta versao.</p>
+          <p className="mt-4 rounded-xl bg-white/10 p-3 text-xs leading-5 text-zinc-200">Perfil ativo: {profiles.find((item) => item.id === profile)?.label}. Sem autenticação real nesta versão.</p>
           <nav className="mt-4 grid gap-2">
             <NavButton tab="painel" current={tab} setTab={setTab} icon={<LayoutDashboard size={18} />} label="Painel" />
             <NavButton tab="pedidos" current={tab} setTab={setTab} icon={<ShoppingBag size={18} />} label="Pedidos" />
-            <NavButton tab="catalogo" current={tab} setTab={setTab} icon={<Boxes size={18} />} label="Catalogo" />
+            <NavButton tab="catalogo" current={tab} setTab={setTab} icon={<Boxes size={18} />} label="Catálogo" />
             <NavButton tab="campanhas" current={tab} setTab={setTab} icon={<Megaphone size={18} />} label="Campanhas" />
-            <NavButton tab="integracao" current={tab} setTab={setTab} icon={<RefreshCw size={18} />} label="Integracao" />
+            <NavButton tab="integracao" current={tab} setTab={setTab} icon={<RefreshCw size={18} />} label="Integração" />
           </nav>
           <a href="/" className="mt-4 block rounded-xl bg-white px-4 py-3 text-center font-black text-zinc-950">Abrir app do cliente</a>
         </aside>
@@ -110,8 +110,8 @@ export default function CrmPage() {
           <header className="mb-4 rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
             <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
               <div>
-                <p className="text-sm font-bold text-zinc-500">Operacao por unidade</p>
-                <h1 className="text-2xl font-black">Plataforma Grupo Fenix</h1>
+                <p className="text-sm font-bold text-zinc-500">Operação por unidade</p>
+                <h1 className="text-2xl font-black">Plataforma Grupo Fênix</h1>
               </div>
               <div className="flex flex-wrap gap-2">
                 {stores.map((store) => <Badge key={store.id} color={store.palette.primary}>{store.shortName}</Badge>)}
@@ -122,7 +122,7 @@ export default function CrmPage() {
           {state.syncFailureStoreId && (
             <div className="mb-4 flex gap-3 rounded-2xl border border-red-200 bg-red-50 p-4 text-red-800">
               <AlertTriangle className="shrink-0" />
-              <p className="text-sm font-bold">Falha demonstrativa de sincronizacao ativa. Itens desatualizados precisam ser corrigidos antes de concluir uma compra.</p>
+              <p className="text-sm font-bold">Falha demonstrativa de sincronização ativa. Itens desatualizados precisam ser corrigidos antes de concluir uma compra.</p>
             </div>
           )}
 
@@ -171,7 +171,7 @@ export default function CrmPage() {
                         {statuses.map((status) => <option key={status.id} value={status.id}>{status.label}</option>)}
                       </select>
                     </div>
-                    {blocked && <p className="mt-3 rounded-xl bg-red-50 p-3 text-sm font-bold text-red-700">Este pedido contem item desatualizado. Corrija na integracao simulada antes de avancar.</p>}
+                    {blocked && <p className="mt-3 rounded-xl bg-red-50 p-3 text-sm font-bold text-red-700">Este pedido contém item desatualizado. Corrija na integração simulada antes de avançar.</p>}
                     <div className="mt-4 grid gap-2">
                       {order.items.map((item) => {
                         const info = getStoreProduct(item.productId, order.storeId, state);
@@ -179,9 +179,9 @@ export default function CrmPage() {
                           <div key={item.productId} className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-zinc-50 p-3 text-sm">
                             <span className="font-bold">{item.title} x {item.quantity}</span>
                             <span>{formatMoney(item.unitPrice)}</span>
-                            <button onClick={() => setState((current) => ({ ...current, orders: current.orders.map((saved) => saved.id === order.id ? { ...saved, items: saved.items.map((savedItem) => savedItem.productId === item.productId ? { ...savedItem, unavailable: true, substitution: "Produto similar sugerido pela loja" } : savedItem) } : saved) }))} className="btn-gradient rounded-lg px-3 py-1 font-bold">Marcar indisponivel</button>
-                            {item.unavailable && <span className="w-full rounded-lg bg-amber-50 px-3 py-2 font-bold text-amber-800">Substituicao proposta: {item.substitution}</span>}
-                            {info.outdated && <span className="w-full rounded-lg bg-red-50 px-3 py-2 font-bold text-red-700">Preco desatualizado</span>}
+                            <button onClick={() => setState((current) => ({ ...current, orders: current.orders.map((saved) => saved.id === order.id ? { ...saved, items: saved.items.map((savedItem) => savedItem.productId === item.productId ? { ...savedItem, unavailable: true, substitution: "Produto similar sugerido pela loja" } : savedItem) } : saved) }))} className="btn-gradient rounded-lg px-3 py-1 font-bold">Marcar indisponível</button>
+                            {item.unavailable && <span className="w-full rounded-lg bg-amber-50 px-3 py-2 font-bold text-amber-800">Substituição proposta: {item.substitution}</span>}
+                            {info.outdated && <span className="w-full rounded-lg bg-red-50 px-3 py-2 font-bold text-red-700">Preço desatualizado</span>}
                           </div>
                         );
                       })}
@@ -196,9 +196,9 @@ export default function CrmPage() {
             <div className="grid gap-4">
               <div className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
                 <h2 className="text-xl font-black">Cadastro editorial de produtos</h2>
-                <p className="mt-1 text-sm text-zinc-600">Edicao visual demonstrativa. As mudancas editoriais abaixo ficam no prototipo local.</p>
+                <p className="mt-1 text-sm text-zinc-600">Edição visual demonstrativa. As mudanças editoriais abaixo ficam no protótipo local.</p>
                 <div className="mt-4 grid gap-3 md:grid-cols-4">
-                  <input className="rounded-xl border px-3 py-2" defaultValue="Produto demonstrativo" aria-label="Titulo do produto" />
+                  <input className="rounded-xl border px-3 py-2" defaultValue="Produto demonstrativo" aria-label="Título do produto" />
                   <select className="rounded-xl border px-3 py-2">{categories.map((item) => <option key={item.id}>{item.label}</option>)}</select>
                   <input className="rounded-xl border px-3 py-2" defaultValue="/products/arroz-branco-5kg.svg" aria-label="Imagem do produto" />
                   <label className="flex items-center gap-2 rounded-xl bg-zinc-100 px-3 py-2 font-bold"><input type="checkbox" defaultChecked /> Destaque</label>
@@ -235,8 +235,8 @@ export default function CrmPage() {
           {tab === "integracao" && (
             <div className="grid gap-4 lg:grid-cols-[1fr_360px]">
               <div className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
-                <h2 className="text-xl font-black">Integracao simulada de precos</h2>
-                <p className="mt-1 text-sm text-zinc-600">Use os botoes para demonstrar sincronizacao por unidade. O novo preco aparece na vitrine correspondente.</p>
+                <h2 className="text-xl font-black">Integração simulada de preços</h2>
+                <p className="mt-1 text-sm text-zinc-600">Use os botões para demonstrar sincronização por unidade. O novo preço aparece na vitrine correspondente.</p>
                 <div className="mt-4 grid gap-3 md:grid-cols-3">
                   <select value={integrationStore} onChange={(event) => setIntegrationStore(event.target.value as StoreId)} className="rounded-xl border px-3 py-3">
                     {stores.map((store) => <option key={store.id} value={store.id}>{store.shortName}</option>)}
@@ -247,12 +247,12 @@ export default function CrmPage() {
                   <button onClick={() => {
                     const current = getStoreProduct(selectedProductId, integrationStore, state);
                     setState((saved) => simulatePriceUpdate(saved, integrationStore, selectedProductId, Number((current.price + 1.37).toFixed(2))));
-                  }} className="btn-gradient rounded-xl px-4 py-3 font-black">Simular atualizacao de preco</button>
+                  }} className="btn-gradient rounded-xl px-4 py-3 font-black">Simular atualização de preço</button>
                 </div>
-                <button onClick={() => setState((saved) => markSyncFailure(saved, integrationStore, selectedProductId))} className="btn-gradient mt-3 rounded-xl px-4 py-3 font-black">Simular falha de sincronizacao</button>
+                <button onClick={() => setState((saved) => markSyncFailure(saved, integrationStore, selectedProductId))} className="btn-gradient mt-3 rounded-xl px-4 py-3 font-black">Simular falha de sincronização</button>
               </div>
               <div className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
-                <h3 className="font-black">Historico demonstrativo</h3>
+                <h3 className="font-black">Histórico demonstrativo</h3>
                 <div className="mt-3 max-h-[520px] space-y-2 overflow-auto">
                   {state.events.map((event) => {
                     const store = stores.find((item) => item.id === event.storeId)!;

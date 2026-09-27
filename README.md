@@ -1,6 +1,6 @@
-# Grupo Fenix - Plataforma demonstrativa
+# Grupo Fênix - Plataforma demonstrativa
 
-Protótipo navegável para apresentar a plataforma digital do Grupo Fenix, com aplicativo de compras para clientes e CRM interno para funcionários.
+Protótipo navegável para apresentar a plataforma digital do Grupo Fênix, com aplicativo de compras para clientes e CRM interno para funcionários.
 
 ## Como rodar localmente
 
@@ -57,7 +57,7 @@ npm run start
 
 Os arquivos originais foram encontrados em `imagens/` e copiados para `public/logos/`.
 
-- `WhatsApp Image 2026-09-26 at 14.31.44.jpeg`: Fenix Supermercado.
+- `WhatsApp Image 2026-09-26 at 14.31.44.jpeg`: Fênix Supermercado.
 - `WhatsApp Image 2026-09-26 at 14.31.53.jpeg`: Mantiqueira Atacado e Varejo.
 
 As proporções foram preservadas; os logotipos não foram redesenhados.
@@ -69,7 +69,7 @@ As imagens dos produtos são ilustrações locais em `public/products/`, geradas
 ## Pendências
 
 - O arquivo `PRD_Grupo_Fenix_Plataforma_Supermercados.md` não estava presente no diretório no momento da implementação. O protótipo seguiu o escopo detalhado do prompt.
-- Confirmar grafia oficial, endereço e dados da unidade Fenix em Juscimeira, MT.
+- Confirmar grafia oficial, endereço e dados da unidade Fênix em Juscimeira, MT.
 - Confirmar endereços oficiais das unidades de Jaciara.
 - Substituir ilustrações por fotos autorizadas dos produtos quando houver acervo real.
 - Implementar autenticação, Supabase e integração comercial apenas em etapa futura.

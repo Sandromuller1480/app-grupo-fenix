@@ -30,10 +30,10 @@ type View = "select" | "home" | "catalog" | "product" | "cart" | "checkout" | "o
 
 const statusLabel = {
   recebido: "Recebido",
-  separacao: "Em separacao",
+  separacao: "Em separação",
   pronto: "Pronto para retirada",
   entrega: "Saiu para entrega",
-  concluido: "Concluido",
+  concluido: "Concluído",
 };
 
 const selectionSlides = [
@@ -103,7 +103,7 @@ export default function CustomerApp() {
   }
 
   if (!ready) {
-    return <main className="app-shell grid min-h-screen place-items-center p-6"><p className="rounded-full bg-white px-5 py-3 text-sm font-semibold shadow">Carregando demonstracao...</p></main>;
+    return <main className="app-shell grid min-h-screen place-items-center p-6"><p className="rounded-full bg-white px-5 py-3 text-sm font-semibold shadow">Carregando demonstração...</p></main>;
   }
 
   return (
@@ -111,9 +111,9 @@ export default function CustomerApp() {
       <header className="sticky top-0 z-30 shrink-0 border-b border-black/5 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
           <button className="flex items-center gap-3 text-left" onClick={() => setView("select")}>
-            <img src="/logos/fenix.jpeg" alt="Logotipo Fenix Supermercado" className="h-11 w-11 rounded-xl object-contain ring-1 ring-black/10" />
+            <img src="/logos/fenix.jpeg" alt="Logotipo Fênix Supermercado" className="h-11 w-11 rounded-xl object-contain ring-1 ring-black/10" />
             <div>
-              <p className="text-sm font-black text-zinc-900">Grupo Fenix</p>
+              <p className="text-sm font-black text-red-700">Grupo Fênix</p>
               <p className="text-xs text-zinc-600">Compras demonstrativas</p>
             </div>
           </button>
@@ -136,7 +136,7 @@ export default function CustomerApp() {
               <img
                 key={slide}
                 src={slide}
-                alt="Imagem promocional do Grupo Fenix"
+                alt="Imagem promocional do Grupo Fênix"
                 className={clsx(
                   "absolute inset-0 h-full w-full object-cover transition-opacity duration-700",
                   index === activeSlide ? "opacity-100" : "opacity-0",
@@ -184,7 +184,7 @@ export default function CustomerApp() {
               <div className="grid gap-4 md:grid-cols-2">
                 {state.banners.filter((banner) => banner.storeId === selectedStore.id && banner.active).map((banner) => (
                   <div key={banner.id} className="rounded-[1.5rem] p-5 text-white shadow-lg" style={{ background: `linear-gradient(135deg, ${selectedStore.palette.primary}, ${selectedStore.palette.secondary === "#ffffff" ? "#2b2b2b" : selectedStore.palette.secondary})` }}>
-                    <p className="text-sm font-bold opacity-90">Promocao demonstrativa</p>
+                    <p className="text-sm font-bold opacity-90">Promoção demonstrativa</p>
                     <h2 className="mt-2 text-2xl font-black">{banner.title}</h2>
                     <p className="mt-2 text-sm opacity-90">{banner.subtitle}</p>
                   </div>
@@ -228,7 +228,7 @@ export default function CustomerApp() {
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/50 p-4">
           <div className="max-w-2xl rounded-[1.5rem] bg-white p-5 shadow-2xl">
             <h2 className="text-xl font-black">Revisar carrinho ao trocar de loja</h2>
-            <p className="mt-2 text-sm text-zinc-600">Os precos e disponibilidades abaixo pertencem a nova unidade. Itens indisponiveis serao removidos se voce confirmar.</p>
+            <p className="mt-2 text-sm text-zinc-600">Os preços e disponibilidades abaixo pertencem à nova unidade. Itens indisponíveis serão removidos se você confirmar.</p>
             <div className="mt-4 max-h-80 overflow-auto">
               {state.cart.map((item) => {
                 const product = products.find((p) => p.id === item.productId)!;
@@ -237,7 +237,7 @@ export default function CustomerApp() {
                 return (
                   <div key={item.productId} className="flex items-center justify-between gap-3 border-b py-3 text-sm">
                     <span className="font-bold">{product.title}</span>
-                    <span>{formatMoney(current.price)} {"->"} {next.available ? formatMoney(next.price) : "Indisponivel"}</span>
+                    <span>{formatMoney(current.price)} {"->"} {next.available ? formatMoney(next.price) : "Indisponível"}</span>
                   </div>
                 );
               })}
@@ -327,7 +327,7 @@ function ProductGrid({ items, state, storeId, onOpen, onAdd }: { items: { produc
                 <span className="text-xs text-zinc-500"> / {product.unit}</span>
               </div>
             </button>
-            <button disabled={!info.available} onClick={() => onAdd(product.id)} className="btn-gradient mt-auto w-full rounded-xl px-3 py-2 text-sm font-bold">{info.available ? "Adicionar" : "Indisponivel"}</button>
+            <button disabled={!info.available} onClick={() => onAdd(product.id)} className="btn-gradient mt-auto w-full rounded-xl px-3 py-2 text-sm font-bold">{info.available ? "Adicionar" : "Indisponível"}</button>
           </article>
         );
       })}
@@ -342,7 +342,7 @@ function ProductDetail({ product, storeId, state, onBack, onAdd }: { product: Pr
     <div className="grid gap-5 rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5 md:grid-cols-2">
       <div className="aspect-square rounded-2xl bg-zinc-50 p-4"><img src={product.image} alt={product.alt} className="h-full w-full object-contain" /></div>
       <div className="flex flex-col justify-center">
-        <button onClick={onBack} className="mb-4 w-fit text-sm font-bold text-zinc-600">Voltar ao catalogo</button>
+        <button onClick={onBack} className="mb-4 w-fit text-sm font-bold text-zinc-600">Voltar ao catálogo</button>
         <p className="text-sm font-bold text-zinc-500">{product.brand} - {product.package}</p>
         <h2 className="mt-2 text-3xl font-black">{product.title}</h2>
         <p className="mt-3 text-zinc-600">{product.description}</p>
@@ -360,7 +360,7 @@ function ProductDetail({ product, storeId, state, onBack, onAdd }: { product: Pr
 }
 
 function CartView({ state, setState, storeId, totals, onCheckout, onCatalog }: { state: Parameters<typeof getStoreProduct>[2]; setState: ReturnType<typeof useDemoState>["setState"]; storeId: StoreId; totals: ReturnType<typeof calculateTotals>; onCheckout: () => void; onCatalog: () => void }) {
-  if (!state.cart.length) return <EmptyState title="Carrinho vazio" text="Adicione produtos da unidade escolhida para revisar a compra." action="Ver catalogo" onAction={onCatalog} />;
+  if (!state.cart.length) return <EmptyState title="Carrinho vazio" text="Adicione produtos da unidade escolhida para revisar a compra." action="Ver catálogo" onAction={onCatalog} />;
   return (
     <div className="grid gap-4 lg:grid-cols-[1fr_360px]">
       <div className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
@@ -394,7 +394,7 @@ function CheckoutView({ state, setState, storeId, totals, onDone }: { state: Par
   const [fulfillment, setFulfillment] = useState<Fulfillment>("entrega");
   const [address, setAddress] = useState("Rua das Palmeiras, 123");
   const [replacementPreference, setReplacementPreference] = useState("Avisar antes de substituir");
-  const [paymentLabel, setPaymentLabel] = useState("Cartao na entrega - demonstracao");
+  const [paymentLabel, setPaymentLabel] = useState("Cartão na entrega - demonstração");
   const blocked = state.cart.some((item) => getStoreProduct(item.productId, storeId, state).outdated);
 
   function finish() {
@@ -405,9 +405,9 @@ function CheckoutView({ state, setState, storeId, totals, onDone }: { state: Par
       status: "recebido",
       createdAt: new Date().toISOString(),
       fulfillment,
-      customerName: "Cliente demonstracao",
+      customerName: "Cliente demonstração",
       address: fulfillment === "entrega" ? address : undefined,
-      timeSlot: fulfillment === "entrega" ? "Hoje, 16h as 18h" : "Retirada hoje, 15h",
+      timeSlot: fulfillment === "entrega" ? "Hoje, 16h às 18h" : "Retirada hoje, 15h",
       replacementPreference,
       paymentLabel,
       items: state.cart.map((item) => {
@@ -425,34 +425,34 @@ function CheckoutView({ state, setState, storeId, totals, onDone }: { state: Par
     <div className="grid gap-4 lg:grid-cols-[1fr_360px]">
       <div className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
         <h2 className="text-2xl font-black">Checkout demonstrativo</h2>
-        <p className="mt-1 text-sm text-zinc-600">Nenhuma cobranca real sera realizada.</p>
-        {blocked && <p className="mt-4 rounded-xl bg-red-50 p-3 text-sm font-bold text-red-700">Ha item com preco desatualizado. O CRM precisa simular uma atualizacao antes de concluir.</p>}
+        <p className="mt-1 text-sm text-zinc-600">Nenhuma cobrança real será realizada.</p>
+        {blocked && <p className="mt-4 rounded-xl bg-red-50 p-3 text-sm font-bold text-red-700">Há item com preço desatualizado. O CRM precisa simular uma atualização antes de concluir.</p>}
         <div className="mt-5 grid gap-4">
           <Segment value={fulfillment} setValue={setFulfillment} options={[["entrega", "Entrega"], ["retirada", "Retirada"]]} />
-          {fulfillment === "entrega" && <Field label="Endereco de entrega" value={address} onChange={setAddress} />}
+          {fulfillment === "entrega" && <Field label="Endereço de entrega" value={address} onChange={setAddress} />}
           <label className="grid gap-2 text-sm font-bold">Horario
             <select className="rounded-xl border px-3 py-3 font-normal">
-              <option>{fulfillment === "entrega" ? "Hoje, 16h as 18h" : "Retirada hoje, 15h"}</option>
-              <option>Amanha, 9h as 11h</option>
+              <option>{fulfillment === "entrega" ? "Hoje, 16h às 18h" : "Retirada hoje, 15h"}</option>
+              <option>Amanhã, 9h às 11h</option>
             </select>
           </label>
-          <label className="grid gap-2 text-sm font-bold">Substituicao de itens
+          <label className="grid gap-2 text-sm font-bold">Substituição de itens
             <select value={replacementPreference} onChange={(event) => setReplacementPreference(event.target.value)} className="rounded-xl border px-3 py-3 font-normal">
               <option>Avisar antes de substituir</option>
               <option>Permitir produto similar</option>
-              <option>Remover item indisponivel</option>
+              <option>Remover item indisponível</option>
             </select>
           </label>
           <label className="grid gap-2 text-sm font-bold">Pagamento visual
             <select value={paymentLabel} onChange={(event) => setPaymentLabel(event.target.value)} className="rounded-xl border px-3 py-3 font-normal">
-              <option>Cartao na entrega - demonstracao</option>
-              <option>Pix na retirada - demonstracao</option>
-              <option>Dinheiro - demonstracao</option>
+              <option>Cartão na entrega - demonstração</option>
+              <option>Pix na retirada - demonstração</option>
+              <option>Dinheiro - demonstração</option>
             </select>
           </label>
         </div>
       </div>
-      <Summary totals={totals} action="Criar pedido de demonstracao" onAction={finish} disabled={blocked} />
+      <Summary totals={totals} action="Criar pedido de demonstração" onAction={finish} disabled={blocked} />
     </div>
   );
 }
@@ -466,7 +466,7 @@ function OrdersView({ orders }: { orders: DemoOrder[] }) {
         return (
           <article key={order.id} className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <div><p className="text-sm text-zinc-500">Pedido de demonstracao criado</p><h2 className="text-xl font-black">{order.id} - {store.shortName}</h2></div>
+              <div><p className="text-sm text-zinc-500">Pedido de demonstração criado</p><h2 className="text-xl font-black">{order.id} - {store.shortName}</h2></div>
               <span className="rounded-full bg-emerald-50 px-3 py-1 text-sm font-black text-emerald-700">{statusLabel[order.status]}</span>
             </div>
             <div className="mt-4 grid gap-2 md:grid-cols-5">
