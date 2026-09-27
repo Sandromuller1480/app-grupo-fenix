@@ -7,7 +7,6 @@ import {
   CreditCard,
   Home,
   LocateFixed,
-  MapPin,
   Minus,
   PackageCheck,
   Plus,
@@ -123,37 +122,31 @@ export default function CustomerApp() {
       </header>
 
       {view === "select" && (
-        <section className="mx-auto grid max-w-6xl gap-6 px-4 py-6 lg:grid-cols-[1fr_1.2fr]">
-          <div className="rounded-[2rem] bg-gradient-to-br from-red-700 via-red-600 to-orange-500 p-6 text-white shadow-xl">
+        <section className="mx-auto max-w-3xl px-4 py-6">
+          <div className="rounded-[2rem] bg-gradient-to-br from-red-700 via-red-600 to-orange-500 p-6 text-white shadow-xl sm:p-8">
             <p className="text-sm font-bold uppercase tracking-wider text-red-200">Selecao de loja</p>
             <h1 className="mt-3 text-3xl font-black leading-tight sm:text-5xl">Escolha onde montar a compra.</h1>
-            <p className="mt-4 text-sm leading-6 text-zinc-200">Digite um CEP, use a localizacao demonstrativa ou selecione manualmente uma unidade. Distancias e areas sao ficticias para apresentacao.</p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <div className="flex flex-1 items-center gap-2 rounded-2xl bg-white px-4 py-3 text-zinc-900">
-                <Search size={18} />
-                <input placeholder="CEP ou endereco" className="w-full bg-transparent outline-none" />
-              </div>
-              <button className="rounded-2xl bg-amber-300 px-5 py-3 font-bold text-zinc-950 shadow-lg shadow-orange-900/20 transition hover:bg-amber-200" onClick={() => setView("select")}>Buscar</button>
+            <p className="mt-4 text-sm leading-6 text-white/90">Selecione uma das unidades abaixo para entrar direto na loja. Distancias e areas de atendimento sao ficticias para apresentacao.</p>
+            <div className="mt-6 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 text-zinc-900 shadow-lg shadow-orange-900/20">
+              <StoreIcon size={20} className="shrink-0 text-red-600" />
+              <select
+                defaultValue=""
+                aria-label="Escolher loja"
+                className="w-full bg-transparent py-1 text-base font-bold outline-none"
+                onChange={(event) => {
+                  const storeId = event.target.value as StoreId;
+                  if (storeId) selectStore(storeId);
+                }}
+              >
+                <option value="" disabled>Escolha uma loja</option>
+                {stores.map((store) => (
+                  <option key={store.id} value={store.id}>{store.shortName}</option>
+                ))}
+              </select>
             </div>
             <button onClick={simulateLocation} className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-white/20 px-4 py-3 font-bold">
               <LocateFixed size={18} /> {locationLoading ? "Localizando..." : "Usar localizacao demonstrativa"}
             </button>
-          </div>
-
-          <div className="grid gap-3">
-            {stores.map((store) => (
-              <button key={store.id} onClick={() => selectStore(store.id)} className="flex flex-col gap-4 rounded-[1.5rem] bg-white p-4 text-left shadow-sm ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-lg sm:flex-row sm:items-center">
-                <img src={store.logo} alt={`Logotipo ${store.shortName}`} className="h-24 w-24 rounded-2xl object-contain ring-1 ring-black/10" />
-                <div className="flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h2 className="text-xl font-black" style={{ color: store.palette.primary }}>{store.shortName}</h2>
-                    <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800">Dados de atendimento ficticios</span>
-                  </div>
-                  <p className="mt-1 text-sm text-zinc-600">{store.address}</p>
-                  <p className="mt-3 flex items-center gap-2 text-sm font-semibold text-zinc-800"><MapPin size={16} /> {store.distance} - {store.serviceArea}</p>
-                </div>
-              </button>
-            ))}
           </div>
         </section>
       )}
